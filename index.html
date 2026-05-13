@@ -1,1 +1,150 @@
-<h1>Hello World Wide Web!</h1>
+ <main>
+   <div id="title">Click Here to Feel Something</div>
+   <button id="mainButton">CLICK HERE TO FEEL SOMETHING</button>
+   <div id="finalMessage">Are you feeling anything yet?</div>
+ </main>
+
+ <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
+ <script>
+   let clickCount = 0;
+
+   const messages = [
+     "someone liked your post",
+     "u up?",
+     "low storage: memory almost full",
+     "he viewed your story",
+     "new notification",
+     "this was your aesthetic once",
+     "delete this photo?",
+     "typing...",
+     "you had to be there",
+     "soft grunge forever",
+     "seen 2:16 AM",
+     "do you miss it or do you miss who you were?",
+     "refresh to feel better",
+     "your memories from 2016",
+     "follow for follow?",
+     "why did this matter so much?",
+     "another tiny feeling appeared",
+     "connection failed",
+     "please try again",
+     "are you still watching?"
+   ];
+
+   const emojis = ["💖", "✨", "📱", "💿", "🦋", "🌸", "💔", "⭐", "🎧", "💬", "📸"];
+
+   function setup () {
+     document.body.style.margin = "0";
+     document.body.style.height = "100vh";
+     document.body.style.overflow = "hidden";
+     document.body.style.fontFamily = "Courier New, monospace";
+     document.body.style.background = "linear-gradient(135deg, #ffd6f3, #d6e8ff, #fff0c7)";
+     document.body.style.position = "relative";
+     document.body.style.cursor = "crosshair";
+
+     const title = document.getElementById("title");
+     title.style.position = "absolute";
+     title.style.top = "25px";
+     title.style.left = "50%";
+     title.style.transform = "translateX(-50%)";
+     title.style.textAlign = "center";
+     title.style.color = "white";
+     title.style.textShadow = "2px 2px 8px hotpink";
+     title.style.fontSize = "26px";
+     title.style.zIndex = "10";
+
+     const button = document.getElementById("mainButton");
+     button.style.position = "absolute";
+     button.style.top = "50%";
+     button.style.left = "50%";
+     button.style.transform = "translate(-50%, -50%)";
+     button.style.padding = "18px 30px";
+     button.style.fontSize = "18px";
+     button.style.fontFamily = "Courier New, monospace";
+     button.style.border = "3px solid white";
+     button.style.borderRadius = "30px";
+     button.style.background = "hotpink";
+     button.style.color = "white";
+     button.style.boxShadow = "0 0 20px white";
+     button.style.cursor = "pointer";
+     button.style.zIndex = "20";
+
+     const finalMessage = document.getElementById("finalMessage");
+     finalMessage.style.display = "none";
+     finalMessage.style.position = "absolute";
+     finalMessage.style.bottom = "35px";
+     finalMessage.style.left = "50%";
+     finalMessage.style.transform = "translateX(-50%)";
+     finalMessage.style.background = "black";
+     finalMessage.style.color = "white";
+     finalMessage.style.padding = "18px 25px";
+     finalMessage.style.border = "2px solid white";
+     finalMessage.style.fontSize = "20px";
+     finalMessage.style.textAlign = "center";
+     finalMessage.style.zIndex = "30";
+
+     button.addEventListener("click", buttonClicked);
+   }
+
+   function buttonClicked () {
+     clickCount++;
+     createMemory();
+
+     if (clickCount % 3 === 0) {
+       createEmoji();
+     }
+
+     if (clickCount > 10) {
+       document.body.style.background = "linear-gradient(135deg, #ff8fd8, #8fd3ff, #fff36d)";
+     }
+
+     if (clickCount > 18) {
+       document.getElementById("mainButton").textContent = "KEEP CLICKING";
+       document.body.style.filter = "contrast(115%) saturate(140%)";
+     }
+
+     if (clickCount > 25) {
+       document.getElementById("finalMessage").style.display = "block";
+     }
+   }
+
+   function createMemory () {
+     const memory = document.createElement("div");
+     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+     memory.textContent = randomMessage;
+     memory.style.position = "absolute";
+     memory.style.left = Math.random() * 80 + "vw";
+     memory.style.top = Math.random() * 80 + "vh";
+     memory.style.padding = "12px 16px";
+     memory.style.border = "2px solid white";
+     memory.style.borderRadius = "12px";
+     memory.style.background = "rgba(255, 255, 255, 0.78)";
+     memory.style.color = "#333";
+     memory.style.fontSize = "15px";
+     memory.style.boxShadow = "0 0 12px rgba(255, 105, 180, 0.7)";
+     memory.style.maxWidth = "230px";
+     memory.style.transform = "rotate(" + (Math.random() * 20 - 10) + "deg)";
+
+     if (clickCount > 15 && Math.random() > 0.5) {
+       memory.style.color = "deeppink";
+       memory.style.textShadow = "2px 0 cyan, -2px 0 yellow";
+       memory.style.fontWeight = "bold";
+     }
+
+     document.body.appendChild(memory);
+   }
+
+   function createEmoji () {
+     const emoji = document.createElement("div");
+     emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+     emoji.style.position = "absolute";
+     emoji.style.left = Math.random() * 90 + "vw";
+     emoji.style.top = Math.random() * 85 + "vh";
+     emoji.style.fontSize = "38px";
+
+     document.body.appendChild(emoji);
+   }
+
+   setup();
+ </script>

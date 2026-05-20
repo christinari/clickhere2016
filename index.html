@@ -6,157 +6,155 @@
 
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
 <script>
-let clickCount = 0;
+  let clickCount = 0;
 
-const messages = [
-  "someone prettier just posted",
-  "your body should look different",
-  "he viewed your story",
-  "compare yourself again",
-  "this got more likes than yours",
-  "refresh to feel wanted",
-  "you are almost enough",
-  "keep watching",
-  "new beauty standard unlocked",
-  "why don’t you look like that?",
-  "someone liked your post",
-  "temporary validation received",
-  "the algorithm noticed you paused",
-  "not sad enough? try again",
-  "this feeling was selected for you",
-  "your insecurity keeps you scrolling",
-  "another perfect girl appeared",
-  "connection failed",
-  "keep clicking to feel better",
-  "are you still in control?"
-];
+  const messages = [
+    "someone prettier just posted",
+    "your body should look different",
+    "he viewed your story",
+    "compare yourself again",
+    "this got more likes than yours",
+    "refresh to feel wanted",
+    "you are almost enough",
+    "keep watching",
+    "new beauty standard unlocked",
+    "why don’t you look like that?",
+    "someone liked your post",
+    "temporary validation received",
+    "the algorithm noticed you paused",
+    "not sad enough? try again",
+    "this feeling was selected for you",
+    "your insecurity keeps you scrolling",
+    "another perfect girl appeared",
+    "connection failed",
+    "keep clicking to feel better",
+    "are you still in control?"
+  ];
 
-const emojis = ["💖", "✨", "📱", "💿", "🦋", "🌸", "💔", "⭐", "🎧", "💬", "📸", "🪞", "👁️"];
+  const emojis = ["💖", "✨", "📱", "💿", "🦋", "🌸", "💔", "⭐", "🎧", "💬", "📸", "🪞", "👁️"];
 
-function setup () {
-  document.body.style.margin = "0";
-  document.body.style.height = "100vh";
-  document.body.style.overflow = "hidden";
-  document.body.style.fontFamily = "Courier New, monospace";
-  document.body.style.background = "linear-gradient(135deg, #ffd6f3, #d6e8ff, #fff0c7)";
-  document.body.style.position = "relative";
-  document.body.style.cursor = "crosshair";
+  function setup () {
+    document.body.style.margin = "0";
+    document.body.style.height = "100vh";
+    document.body.style.overflow = "hidden";
+    document.body.style.fontFamily = "Courier New, monospace";
+    document.body.style.background = "linear-gradient(135deg, #ffd6f3, #d6e8ff, #fff0c7)";
+    document.body.style.position = "relative";
+    document.body.style.cursor = "crosshair";
 
-  const title = document.getElementById("title");
-  title.style.position = "absolute";
-  title.style.top = "25px";
-  title.style.left = "50%";
-  title.style.transform = "translateX(-50%)";
-  title.style.textAlign = "center";
-  title.style.color = "white";
-  title.style.textShadow = "2px 2px 8px hotpink";
-  title.style.fontSize = "34px";
-  title.style.fontWeight = "bold";
-  title.style.zIndex = "10";
+    const title = document.getElementById("title");
+    title.style.position = "absolute";
+    title.style.top = "25px";
+    title.style.left = "50%";
+    title.style.transform = "translateX(-50%)";
+    title.style.textAlign = "center";
+    title.style.color = "white";
+    title.style.textShadow = "2px 2px 8px hotpink";
+    title.style.fontSize = "34px";
+    title.style.fontWeight = "bold";
+    title.style.zIndex = "10";
 
-  const button = document.getElementById("mainButton");
-  button.style.position = "absolute";
-  button.style.top = "50%";
-  button.style.left = "50%";
-  button.style.transform = "translate(-50%, -50%)";
-  button.style.padding = "25px 45px";
-  button.style.fontSize = "24px";
-  button.style.fontFamily = "Courier New, monospace";
-  button.style.border = "4px solid white";
-  button.style.borderRadius = "35px";
-  button.style.background = "hotpink";
-  button.style.color = "white";
-  button.style.boxShadow = "0 0 30px white";
-  button.style.cursor = "pointer";
-  button.style.zIndex = "20";
+    const button = document.getElementById("mainButton");
+    button.style.position = "absolute";
+    button.style.top = "50%";
+    button.style.left = "50%";
+    button.style.transform = "translate(-50%, -50%)";
+    button.style.padding = "25px 45px";
+    button.style.fontSize = "24px";
+    button.style.fontFamily = "Courier New, monospace";
+    button.style.border = "4px solid white";
+    button.style.borderRadius = "35px";
+    button.style.background = "hotpink";
+    button.style.color = "white";
+    button.style.boxShadow = "0 0 30px white";
+    button.style.cursor = "pointer";
+    button.style.zIndex = "20";
 
-  const finalMessage = document.getElementById("finalMessage");
-  finalMessage.style.display = "none";
-  finalMessage.style.position = "absolute";
-  finalMessage.style.bottom = "35px";
-  finalMessage.style.left = "50%";
-  finalMessage.style.transform = "translateX(-50%)";
-  finalMessage.style.background = "black";
-  finalMessage.style.color = "white";
-  finalMessage.style.padding = "28px 40px";
-  finalMessage.style.border = "3px solid white";
-  finalMessage.style.fontSize = "28px";
-  finalMessage.style.textAlign = "center";
-  finalMessage.style.maxWidth = "700px";
-  finalMessage.style.zIndex = "30";
+    const finalMessage = document.getElementById("finalMessage");
+    finalMessage.style.display = "none";
+    finalMessage.style.position = "absolute";
+    finalMessage.style.bottom = "35px";
+    finalMessage.style.left = "50%";
+    finalMessage.style.transform = "translateX(-50%)";
+    finalMessage.style.background = "black";
+    finalMessage.style.color = "white";
+    finalMessage.style.padding = "28px 40px";
+    finalMessage.style.border = "3px solid white";
+    finalMessage.style.fontSize = "28px";
+    finalMessage.style.textAlign = "center";
+    finalMessage.style.maxWidth = "700px";
+    finalMessage.style.zIndex = "30";
 
-  button.addEventListener("click", buttonClicked);
-}
+    button.addEventListener("click", buttonClicked);
+  }
 
-function buttonClicked () {
-  clickCount++;
+  function buttonClicked () {
+    clickCount++;
 
-  createMemory();
-  createMemory();
+    createMemory();
+    createMemory();
 
-  createEmoji();
-
-  if (clickCount % 2 === 0) {
     createEmoji();
+
+    if (clickCount % 2 === 0) {
+      createEmoji();
+    }
+
+    if (clickCount > 6) {
+      document.body.style.background = "linear-gradient(135deg, #ff8fd8, #8fd3ff, #fff36d)";
+    }
+
+    if (clickCount > 10) {
+      document.getElementById("mainButton").textContent = "KEEP SCROLLING";
+      document.body.style.filter = "contrast(125%) saturate(160%)";
+    }
+
+    if (clickCount > 14) {
+      document.getElementById("finalMessage").style.display = "block";
+    }
   }
 
-  if (clickCount > 6) {
-    document.body.style.background = "linear-gradient(135deg, #ff8fd8, #8fd3ff, #fff36d)";
+  function createMemory () {
+    const memory = document.createElement("div");
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+    memory.textContent = randomMessage;
+    memory.style.position = "absolute";
+    memory.style.left = Math.random() * 70 + "vw";
+    memory.style.top = Math.random() * 75 + "vh";
+    memory.style.padding = "22px 28px";
+    memory.style.border = "3px solid white";
+    memory.style.borderRadius = "18px";
+    memory.style.background = "rgba(255, 255, 255, 0.85)";
+    memory.style.color = "#333";
+    memory.style.fontSize = "26px";
+    memory.style.fontWeight = "bold";
+    memory.style.boxShadow = "0 0 25px rgba(255, 105, 180, 0.9)";
+    memory.style.maxWidth = "380px";
+    memory.style.transform = "rotate(" + (Math.random() * 24 - 12) + "deg)";
+    memory.style.zIndex = "5";
+
+    if (clickCount > 8 && Math.random() > 0.4) {
+      memory.style.color = "deeppink";
+      memory.style.textShadow = "2px 0 cyan, -2px 0 yellow";
+    }
+
+    document.body.appendChild(memory);
   }
 
-  if (clickCount > 10) {
-    document.getElementById("mainButton").textContent = "KEEP SCROLLING";
-    document.body.style.filter = "contrast(125%) saturate(160%)";
+  function createEmoji () {
+    const emoji = document.createElement("div");
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.position = "absolute";
+    emoji.style.left = Math.random() * 85 + "vw";
+    emoji.style.top = Math.random() * 80 + "vh";
+    emoji.style.fontSize = "75px";
+    emoji.style.zIndex = "4";
+    emoji.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+
+    document.body.appendChild(emoji);
   }
 
-  if (clickCount > 14) {
-    document.getElementById("finalMessage").style.display = "block";
-  }
-}
-
-function createMemory () {
-  const memory = document.createElement("div");
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-  memory.textContent = randomMessage;
-  memory.style.position = "absolute";
-  memory.style.left = Math.random() * 70 + "vw";
-  memory.style.top = Math.random() * 75 + "vh";
-  memory.style.padding = "22px 28px";
-  memory.style.border = "3px solid white";
-  memory.style.borderRadius = "18px";
-  memory.style.background = "rgba(255, 255, 255, 0.85)";
-  memory.style.color = "#333";
-  memory.style.fontSize = "26px";
-  memory.style.fontWeight = "bold";
-  memory.style.boxShadow = "0 0 25px rgba(255, 105, 180, 0.9)";
-  memory.style.maxWidth = "380px";
-  memory.style.transform = "rotate(" + (Math.random() * 24 - 12) + "deg)";
-  memory.style.zIndex = "5";
-
-  if (clickCount > 8 && Math.random() > 0.4) {
-    memory.style.color = "deeppink";
-    memory.style.textShadow = "2px 0 cyan, -2px 0 yellow";
-  }
-
-  document.body.appendChild(memory);
-}
-
-function createEmoji () {
-  const emoji = document.createElement("div");
-  emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-  emoji.style.position = "absolute";
-  emoji.style.left = Math.random() * 85 + "vw";
-  emoji.style.top = Math.random() * 80 + "vh";
-  emoji.style.fontSize = "75px";
-  emoji.style.zIndex = "4";
-  emoji.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
-
-  document.body.appendChild(emoji);
-}
-
-setup();
+  setup();
 </script>
 
-   setup();
- </script>
